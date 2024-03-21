@@ -35,15 +35,15 @@ from controller import controller_files
 #### Create Window ####
 #######################
 
-tool_version = "1.4.4"
+tool_version = "1..0.0"
 
 root = customtkinter.CTk()
-root.title(f"Fayaz's Settings {tool_version} for Super Mario Odyssey")
+root.title(f"Fayaz's Settings {tool_version} for Splatoon 2")
 root.geometry("500x720")
 
 customtkinter.set_appearance_mode("system")
 customtkinter.set_default_color_theme("blue")  
-windowtitle = customtkinter.CTkLabel(master=root, font=(CTkFont, 20), text="Fayaz's SMO Utility {tool_version}")
+windowtitle = customtkinter.CTkLabel(master=root, font=(CTkFont, 20), text="Fayaz's Splatoon 2 Utility {tool_version}")
 
 ###############################################
 ###########    GLOBAL SETTINGS      ###########
@@ -310,7 +310,7 @@ def select_mario_folder():
     if os.path.exists(text_folder):
         shutil.rmtree(text_folder)
 
-    # Download the SMO Layout Files
+    # Download the splatoon2 Layout Files
     download_extract_copy(input_folder, mod_name)
 
     # Create the PCHTXT Files
@@ -685,7 +685,7 @@ notebook.add("Credits")
 
 credits_label = ClickableLabel(master=notebook.tab("Credits"), text=
                     ('Utility created by fayaz\n'
-                     'https://github.com/fayaz12g/smo-aar\n'
+                     'https://github.com/fayaz12g/splatoon2-aar\n'
                      'ko-fi.com/fayaz12\n'
                      '\n\nWith special help from\n'
                      'Christopher Fields (cfields7)\n'

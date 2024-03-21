@@ -56,7 +56,7 @@ def create_patch_files(patch_folder, ratio_value, scaling_factor, visual_fixes):
 
 {visual_fix}
 
-// Generated using SMO-AAR by Fayaz (github.com/fayaz12g/smo-aar)'''
+// Generated using SPLATOON2-AAR by Fayaz (github.com/fayaz12g/splatoon2-aar)'''
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, 'w') as patch_file:
             patch_file.write(patch_content)

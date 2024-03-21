@@ -58,9 +58,9 @@ def extract_blarc(file, output_folder):
             # if extracted_file.endswith("bflyt"):
                 # patch_blyt(extracted_file_path, "RootPane", "scale_x", scaling_factor)
 
-        layout_lyarc = os.path.join(root, "layout.lyarc")
-        if os.path.exists(layout_lyarc):
-            extract_blarc(layout_lyarc, root)
-            # os.remove(layout_lyarc)
+        for filename in os.listdir(root):
+            if filename.endswith(".arc"):
+                arc_file_path = os.path.join(root, filename)
+                extract_blarc(arc_file_path, root)
 
     os.remove(file)
