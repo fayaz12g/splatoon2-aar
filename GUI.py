@@ -316,13 +316,13 @@ def select_mario_folder():
     # Create the PCHTXT Files
     visual_fixes = create_visuals(do_screenshot.get(), do_disable_fxaa.get(), do_disable_dynamicres.get())
     create_patch_files(patch_folder, str(ratio_value), str(scaling_factor), visual_fixes)
-    romfs_folder = os.path.join(input_folder, mod_name, "romfs", "LayoutData")
+    romfs_folder = os.path.join(input_folder, mod_name, "romfs", "Layout")
     theromfs_folder = os.path.join(input_folder, mod_name, "romfs")
 
-    # Download and put Controlelr Files in Place
-    controller_files(controller_type.get(), theromfs_folder)
+    # # Download and put Controlelr Files in Place
+    # controller_files(controller_type.get(), theromfs_folder)
 
-    # Decomperss SZS and Lyarc Files
+    # Decomperss SZS and Arc Files
     for file in os.listdir(romfs_folder):
         if file.lower().endswith(".szs"):
             file_path = os.path.join(romfs_folder, file)
@@ -333,11 +333,11 @@ def select_mario_folder():
 
     # Compress layout folders and delete them
     for root, dirs, files in os.walk(input_folder):
-        if "layout" in dirs:
+        if "blyt" in dirs:
             level = -1
-            layout_folder_path = os.path.join(root, "layout")
-            layout_lyarc_path = os.path.join(root, "layout.lyarc")
-            pack_folder_to_blarc(layout_folder_path, layout_lyarc_path, level)
+            layout_folder_path = os.path.join(root, "blyt")
+            layout_arc_path = os.path.join(f"{root}.arc")
+            pack_folder_to_blarc(layout_folder_path, layout_arc_path, level)
             shutil.rmtree(layout_folder_path)
     
     # Compress all remaining folders to SZS and delete them
