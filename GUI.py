@@ -335,19 +335,21 @@ def select_mario_folder():
     for root, dirs, files in os.walk(input_folder):
         if "blyt" in dirs:
             level = -1
-            layout_folder_path = os.path.join(root, "blyt")
-            layout_arc_path = os.path.join(f"{root}.arc")
-            pack_folder_to_blarc(layout_folder_path, layout_arc_path, level)
-            shutil.rmtree(layout_folder_path)
+            layout_folder_path = root
+            parent_root = os.path.dirname(layout_folder_path)
+            grandparent_root = os.path.dirname(parent_root)
+            layout_arc_path = os.path.join(parent_root, f"{os.path.basename(root)}.arc")
+            pack_folder_to_blarc(root, layout_arc_path, level)
+            shutil.rmtree(root)
     
     # Compress all remaining folders to SZS and delete them
-    for dir_name in os.listdir(romfs_folder):
-        level = 1
-        dir_path = os.path.join(romfs_folder, dir_name)
-        if os.path.isdir(os.path.join(romfs_folder, dir_name)):
-            szs_output_path = os.path.join(romfs_folder, f"{dir_name}.szs")
-            pack_folder_to_blarc(os.path.join(romfs_folder, dir_name), szs_output_path, level)
-            shutil.rmtree(dir_path)
+    for root, dirs, files in os.walk(romfs_folder):
+        for directory in dirs:
+            level = 1
+            folder_path = os.path.join(root, directory)
+            szs_output_path = os.path.join(romfs_folder, f"{directory}.szs")
+            pack_folder_to_blarc(folder_path, szs_output_path, level)
+            shutil.rmtree(folder_path)
 
     if open_when_done.get() == True:
         print ("Complete! Opening output folder.")
@@ -375,9 +377,9 @@ def pack_widgets():
     aspect_ratio_divider.pack(side="left")
     denominator_entry.pack(side="left")
     
-    fxaa_checkbox.pack(padx=5, pady=5)
-    screenshot_checkbox.pack(padx=5, pady=5)
-    dynamicres_checkbox.pack(padx=10, pady=10)
+    # fxaa_checkbox.pack(padx=5, pady=5)
+    # screenshot_checkbox.pack(padx=5, pady=5)
+    # dynamicres_checkbox.pack(padx=10, pady=10)
     
     image_label.pack()
 
@@ -438,9 +440,9 @@ def forget_packing():
     aspect_ratio_divider.pack_forget()
     denominator_entry.pack_forget()
     
-    fxaa_checkbox.pack_forget()
-    screenshot_checkbox.pack_forget()
-    dynamicres_checkbox.pack_forget()
+    # fxaa_checkbox.pack_forget()
+    # screenshot_checkbox.pack_forget()
+    # dynamicres_checkbox.pack_forget()
 
     image_label.pack_forget()
     image_layout_label.pack_forget()
@@ -635,7 +637,7 @@ button_color_dropdown = customtkinter.CTkOptionMenu(master=notebook.tab("Control
 button_layout_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="Button Layout:")
 button_layout_dropdown = customtkinter.CTkOptionMenu(master=notebook.tab("Controller"), variable=button_layout, values=full_button_layouts, command=update_image)
 
-# notebook.delete("Controller") # delete this line to readd controller options
+notebook.delete("Controller") # delete this line to readd controller options
 
 ###################
 ####### HUD #######

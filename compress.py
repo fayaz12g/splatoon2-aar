@@ -2,6 +2,7 @@ import os
 import libyaz0
 import SarcLib
 
+# def pack_folder_to_blarc(folder_path, output_file, level):
 
 def pack_folder_to_blarc(folder_path, output_file, level):
     """
@@ -44,7 +45,7 @@ def pack(root, endianness, level, outname):
             else:
                 filename = file
 
-            print(f"Repacking {file}")
+            print(f"Repacking {file} into szs")
             
 
             fullname = ''.join([root, "/", filename])
