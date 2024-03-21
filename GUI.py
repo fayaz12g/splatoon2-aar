@@ -315,7 +315,7 @@ def select_mario_folder():
 
     # Create the PCHTXT Files
     visual_fixes = create_visuals(do_screenshot.get(), do_disable_fxaa.get(), do_disable_dynamicres.get())
-    create_patch_files(patch_folder, str(ratio_value), str(scaling_factor), visual_fixes)
+    # create_patch_files(patch_folder, str(ratio_value), str(scaling_factor), visual_fixes)
     romfs_folder = os.path.join(input_folder, mod_name, "romfs", "Layout")
     theromfs_folder = os.path.join(input_folder, mod_name, "romfs")
 
